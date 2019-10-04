@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Company>Sgart.it</Company>
+    <Authors>Sgart.it</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191003220219_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191003220219_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20191004204518_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191004204518_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20191004215629_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191004215629_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20191004220535_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191004220535_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20191004222955_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191004222955_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20191004223255_InitialMigration.cs" />
+    <Compile Remove="Migrations\20191004223255_InitialMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
