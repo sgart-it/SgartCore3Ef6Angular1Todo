@@ -10,7 +10,7 @@ using SgartCore3Ef6Angular1Todo.ServerApp;
 namespace SgartCore3Ef6Angular1Todo.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    [Migration("20191004224800_InitialMigration")]
+    [Migration("20191005204838_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,12 @@ namespace SgartCore3Ef6Angular1Todo.Migrations
                             ID = 6,
                             Color = "#B09CDD",
                             Name = "Purple"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Color = "#F6B280",
+                            Name = "Orange"
                         });
                 });
 

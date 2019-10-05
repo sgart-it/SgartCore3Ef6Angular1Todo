@@ -159,12 +159,12 @@
       todoFactory.updateCategory(item.id, idCategory).then(function (result) {
         var data = result.data;
         if (result.success) {
-          var idc = data.idCategory;
+          var idc = data.category.id;
           for (var i = 0; i < self.categories.length; i++) {
             if (self.categories[i].id === idc) {
-              item.idCategory = idc;
-              item.category = self.categories[i].category;
-              item.color = self.categories[i].color;
+              item.category.id = idc;
+                item.category.name = self.categories[i].name;
+                item.category.color = self.categories[i].color;
             }
           }
         }

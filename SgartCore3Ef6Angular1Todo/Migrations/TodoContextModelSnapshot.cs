@@ -76,6 +76,12 @@ namespace SgartCore3Ef6Angular1Todo.Migrations
                             ID = 6,
                             Color = "#B09CDD",
                             Name = "Purple"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Color = "#F6B280",
+                            Name = "Orange"
                         });
                 });
 

@@ -8,32 +8,31 @@ using SgartCore3Ef6Angular1Todo.Models;
 using SgartCore3Ef6Angular1Todo.ServerApp;
 namespace SgartCore3Ef6Angular1Todo.API
 {
-  [ApiController]
-  public class StatisticsController : ControllerBase
-  {
-    private readonly IDataRepository _manager;
-
-    // inject del manager
-    public StatisticsController(IDataRepository manager)
+    [ApiController, Route("api/statistics")]
+    public class StatisticsController : ControllerBase
     {
-      _manager = manager;
-    }
+        private readonly IDataRepository _manager;
 
-    [HttpGet]
-    [Route("api/statistics")]
-    public async Task<ServiceStatusListItem<StatisticItem>> Get()
-    {
-      ServiceStatusListItem<StatisticItem> result = new ServiceStatusListItem<StatisticItem>();
-      try
-      {
-        result.Data = _manager.StatisticGetAll().ToList();
-        result.Success = true;
-      }
-      catch (Exception ex)
-      {
-        result.AddError(ex);
-      }
-      return result;
+        // inject del manager
+        public StatisticsController(IDataRepository manager)
+        {
+            _manager = manager;
+        }
+
+        [HttpGet]
+        public async Task<ServiceStatusListItem<Statistic>> Get()
+        {
+            ServiceStatusListItem<Statistic> result = new ServiceStatusListItem<Statistic>();
+            try
+            {
+                result.Data = _manager.StatisticGetAll().ToList();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex);
+            }
+            return result;
+        }
     }
-  }
 }

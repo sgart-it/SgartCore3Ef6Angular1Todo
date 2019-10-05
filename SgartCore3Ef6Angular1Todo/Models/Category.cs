@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace SgartCore3Ef6Angular1Todo.Models
 {
-  public class Category
-  {
-    [Key]
-    //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { get; set; }
+    public class Category
+    {
+        [Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
 
-    [Required, MaxLength(50)]
-    public string Name { get; set; }
+        [Required, MaxLength(50)]
+        public string Name { get; set; }
 
-    [Required, MaxLength(10)]
-    public string Color { get; set; }
+        [Required, MaxLength(10)]
+        public string Color { get; set; }
 
-  }
+    }
 }

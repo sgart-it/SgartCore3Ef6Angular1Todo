@@ -9,32 +9,31 @@ using SgartCore3Ef6Angular1Todo.ServerApp;
 
 namespace SgartCore3Ef6Angular1Todo.API
 {
-  [ApiController]
-  public class CategoryController: ControllerBase
-  {
-    private readonly IDataRepository _manager;
-
-    // inject del manager
-    public CategoryController(IDataRepository manager)
+    [ApiController, Route("api/categories")]
+    public class CategoryController : ControllerBase
     {
-      _manager = manager;
-    }
+        private readonly IDataRepository _manager;
 
-    [HttpGet]
-    [Route("api/categories")]
-    public async Task<ServiceStatusListItem<Category>> Get()
-    {
-      ServiceStatusListItem<Category> result = new ServiceStatusListItem<Category>();
-      try
-      {
-        result.Data = _manager.CategoryGetAllAsync().ToList();
-        result.Success = true;
-      }
-      catch (Exception ex)
-      {
-        result.AddError(ex);
-      }
-      return result;
+        // inject del manager
+        public CategoryController(IDataRepository manager)
+        {
+            _manager = manager;
+        }
+
+        [HttpGet]
+        public async Task<ServiceStatusListItem<Category>> Get()
+        {
+            ServiceStatusListItem<Category> result = new ServiceStatusListItem<Category>();
+            try
+            {
+                result.Data = _manager.CategoryGetAllAsync().ToList();
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex);
+            }
+            return result;
+        }
     }
-  }
 }

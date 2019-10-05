@@ -7,6 +7,6 @@ namespace SgartCore3Ef6Angular1Todo.ServerApp
 {
     public static class Constants
     {
-        public static string VERSION = "1.2019-10-03";
+        public static string VERSION = "1.2019-10-06";
     }
 }

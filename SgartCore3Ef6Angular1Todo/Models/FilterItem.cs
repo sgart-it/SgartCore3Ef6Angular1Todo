@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace SgartCore3Ef6Angular1Todo.Models
 {
-  public class FilterItem
-  {
-    public int? ID { get; set; }
-    public int Page { get; set; }
-    public int Size { get; set; }
-    public string Text { get; set; }
-    public int? IDCategory { get; set; }
-    public int? Status { get; set; }
-    public string Sort { get; set; }
-  }
+    public class FilterItem
+    {
+        public int? ID { get; set; }
+        public int Page { get; set; }
+        public int Size { get; set; }
+        public string Text { get; set; }
+        public int? IDCategory { get; set; }
+        public int? Status { get; set; }
+        public string Sort { get; set; }
+    }
 }

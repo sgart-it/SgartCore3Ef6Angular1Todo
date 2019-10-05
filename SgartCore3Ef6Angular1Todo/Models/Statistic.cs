@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace SgartCore3Ef6Angular1Todo.Models
 {
-  public class StatisticItem : Category
-  {
-    public int Count { get; set; }
-  }
+    public class Statistic : Category
+    {
+        public int Count { get; set; }
+    }
 }

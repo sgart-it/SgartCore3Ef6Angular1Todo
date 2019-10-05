@@ -56,7 +56,8 @@ namespace SgartCore3Ef6Angular1Todo.Migrations
                     { 3, "#A6DD9E", "Green" },
                     { 4, "#97B3E4", "Blue" },
                     { 5, "#FFFA87", "Yellow" },
-                    { 6, "#B09CDD", "Purple" }
+                    { 6, "#B09CDD", "Purple" },
+                    { 7, "#F6B280", "Orange" }
                 });
 
             migrationBuilder.CreateIndex(
