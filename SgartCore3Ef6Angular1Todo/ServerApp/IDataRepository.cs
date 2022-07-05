@@ -8,17 +8,17 @@ namespace SgartCore3Ef6Angular1Todo.ServerApp
 {
     public interface IDataRepository
     {
-        IEnumerable<MyTask> TaskSearch(FilterItem filter);
-        MyTask TaskGet(int id);
-        int TaskAdd(MyTask entity);
-        int TaskUpdate(MyTask entity);
-        int TaskDelete(int id);
-        MyTask TaskToggle(int id);
-        MyTask TaskCategory(int id, int idCategory);
+        Task<IEnumerable<MyTask>> TaskSearchAsync(FilterItem filter);
+        Task<MyTask> TaskGetAsync(int id);
+        Task<int> TaskAddAsync(MyTask entity);
+        Task<int> TaskUpdateAsync(MyTask entity);
+        Task<int> TaskDeleteAsync(int id);
+        Task<MyTask> TaskToggleAsync(int id);
+        Task<MyTask> TaskCategoryAsync(int id, int idCategory);
 
-        IEnumerable<Category> CategoryGetAllAsync();
-        Category CategoryGet(int id);
+        Task<IEnumerable<Category>> CategoryGetAllAsync();
+        Task<Category> CategoryGetAsync(int id);
 
-        IEnumerable<Statistic> StatisticGetAll();
+        Task<IEnumerable<Statistic>> StatisticGetAllAsync();
     }
 }

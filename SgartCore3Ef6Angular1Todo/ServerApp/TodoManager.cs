@@ -18,7 +18,7 @@ namespace SgartCore3Ef6Angular1Todo.ServerApp
 
         #region Task
 
-        public IEnumerable<MyTask> TaskSearch(FilterItem filter)
+        public async Task<IEnumerable<MyTask>> TaskSearchAsync(FilterItem filter)
         {
             //.AsNoTracking() solo perchè è in read only, non mi serve modificarlo
             var r = _ctx.MyTasks.Include(x => x.Category).AsNoTracking();
@@ -65,30 +65,30 @@ namespace SgartCore3Ef6Angular1Todo.ServerApp
                     case "modified desc": r = r.OrderByDescending(x => x.Date); break;
                 }
             }
-            return r;
+            return await r.ToListAsync();
         }
 
-        public MyTask TaskGet(int id)
+        public async Task<MyTask> TaskGetAsync(int id)
         {
-            return _ctx.MyTasks.Include(x => x.Category).FirstOrDefault(x => x.ID == id);
+            return await _ctx.MyTasks.Include(x => x.Category).FirstOrDefaultAsync(x => x.ID == id);
         }
 
-        public int TaskAdd(MyTask entity)
+        public async Task<int> TaskAddAsync(MyTask entity)
         {
             DateTime dt = DateTime.Now;
             entity.ID = 0;
             entity.Modified = dt;
             entity.Created = dt;
-            entity.Category = CategoryGet(entity.Category.ID);
+            entity.Category =await CategoryGetAsync(entity.Category.ID);
             _ctx.MyTasks.Add(entity);
-            return _ctx.SaveChanges();
+            return await _ctx.SaveChangesAsync();
         }
 
-        public int TaskUpdate(MyTask entity)
+        public async Task<int> TaskUpdateAsync(MyTask entity)
         {
             DateTime dt = DateTime.Now;
 
-            MyTask dbEntity = TaskGet(entity.ID);
+            MyTask dbEntity =await TaskGetAsync(entity.ID);
             dbEntity.Date = entity.Date;
             dbEntity.Title = entity.Title;
             dbEntity.Note = entity.Note;
@@ -96,42 +96,42 @@ namespace SgartCore3Ef6Angular1Todo.ServerApp
                 dbEntity.Completed = dt;
             else
                 dbEntity.Completed = null;
-            dbEntity.Category = CategoryGet(entity.Category.ID);
+            dbEntity.Category =await CategoryGetAsync(entity.Category.ID);
             dbEntity.Modified = dt;
-            return _ctx.SaveChanges();
+            return await _ctx.SaveChangesAsync();
         }
 
-        public int TaskDelete(int id)
+        public async Task<int> TaskDeleteAsync(int id)
         {
-            MyTask entity = TaskGet(id);
+            MyTask entity =await TaskGetAsync(id);
             _ctx.MyTasks.Remove(entity);
-            return _ctx.SaveChanges();
+            return await _ctx.SaveChangesAsync();
         }
 
-        public MyTask TaskToggle(int id)
+        public async Task<MyTask> TaskToggleAsync(int id)
         {
             DateTime dt = DateTime.Now;
 
-            MyTask dbEntity = TaskGet(id);
+            MyTask dbEntity =await TaskGetAsync(id);
             if (dbEntity.Completed.HasValue)
                 dbEntity.Completed = null;
             else
                 dbEntity.Completed = dt;
             dbEntity.Modified = dt;
-            int row = _ctx.SaveChanges();
+            int row =await _ctx.SaveChangesAsync();
             if (row == 0)
                 return null;
             return dbEntity;
         }
 
-        public MyTask TaskCategory(int id, int idCategory)
+        public async Task<MyTask> TaskCategoryAsync(int id, int idCategory)
         {
             DateTime dt = DateTime.Now;
 
-            MyTask dbEntity = TaskGet(id);
-            dbEntity.Category = CategoryGet(idCategory);
+            MyTask dbEntity =await TaskGetAsync(id);
+            dbEntity.Category =await CategoryGetAsync(idCategory);
             dbEntity.Modified = dt;
-            int row = _ctx.SaveChanges();
+            int row =await _ctx.SaveChangesAsync();
             if (row == 0)
                 return null;
             return dbEntity;
@@ -140,22 +140,22 @@ namespace SgartCore3Ef6Angular1Todo.ServerApp
 
         #region Category
 
-        public IEnumerable<Category> CategoryGetAllAsync()
+        public async Task<IEnumerable<Category>> CategoryGetAllAsync()
         {
-            return _ctx.Categories;
+            return await _ctx.Categories.ToListAsync();
         }
 
-        public Category CategoryGet(int id)
+        public async Task< Category> CategoryGetAsync(int id)
         {
-            return _ctx.Categories.FirstOrDefault(x => x.ID == id);
+            return await _ctx.Categories.FirstOrDefaultAsync(x => x.ID == id);
         }
         #endregion
 
         #region Statistic
 
-        public IEnumerable<Statistic> StatisticGetAll()
+        public async Task<IEnumerable<Statistic>> StatisticGetAllAsync()
         {
-            return null;
+            throw new NotImplementedException();
         }
         #endregion
     }

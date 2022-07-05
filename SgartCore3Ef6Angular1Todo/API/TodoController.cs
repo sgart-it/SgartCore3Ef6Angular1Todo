@@ -32,7 +32,7 @@ namespace SgartCore3Ef6Angular1Todo.API
             ServiceStatusListItem<MyTask> result = new ServiceStatusListItem<MyTask>();
             try
             {
-                var items = _manager.TaskSearch(filter);
+                var items = await _manager.TaskSearchAsync(filter);
                 if (items != null)
                 {
                     result.Data = items.ToList();
@@ -56,7 +56,7 @@ namespace SgartCore3Ef6Angular1Todo.API
             ServiceStatusItem<MyTask> result = new ServiceStatusItem<MyTask>();
             try
             {
-                result.Data = _manager.TaskGet(id);
+                result.Data = await _manager.TaskGetAsync(id);
                 if (result.Data != null)
                     result.AddSuccess($"Readed 1");
                 else
@@ -100,7 +100,7 @@ namespace SgartCore3Ef6Angular1Todo.API
                         ID = inputData.IDCategory.Value
                     }
                 };
-                result.ReturnValue = _manager.TaskAdd(item);
+                result.ReturnValue = await _manager.TaskAddAsync(item);
                 if (result.ReturnValue > 0)
                     result.AddSuccess($"Readed 1");
                 else
@@ -136,6 +136,7 @@ namespace SgartCore3Ef6Angular1Todo.API
                 DateTime dtNow = DateTime.Now;
                 MyTask item = new MyTask
                 {
+                    ID = inputData.ID.Value,
                     Date = inputData.Date.Value,
                     Title = inputData.Title,
                     Note = string.IsNullOrWhiteSpace(inputData.Note) ? null : inputData.Note,
@@ -147,7 +148,7 @@ namespace SgartCore3Ef6Angular1Todo.API
                     Created = dtNow,
                     Modified = dtNow
                 };
-                result.ReturnValue = _manager.TaskAdd(item);
+                result.ReturnValue = await _manager.TaskUpdateAsync(item);
                 if (result.ReturnValue > 0)
                     result.AddSuccess($"Readed 1");
                 else
@@ -175,7 +176,7 @@ namespace SgartCore3Ef6Angular1Todo.API
                     return result;
                 }
 
-                result.ReturnValue = _manager.TaskDelete(inputData.ID.Value);
+                result.ReturnValue = await _manager.TaskDeleteAsync(inputData.ID.Value);
                 if (result.ReturnValue > 0)
                     result.AddSuccess($"Deleted");
                 else
@@ -191,7 +192,7 @@ namespace SgartCore3Ef6Angular1Todo.API
 
         [HttpPost]
         [Route("toggle")]
-        public async Task<ServiceStatusItem<MyTask>> TodoToggle(MyTaskInput inputData)
+        public async Task<ServiceStatusItem<MyTask>> TodoToggleAsync(MyTaskInput inputData)
         {
             ServiceStatusItem<MyTask> result = new ServiceStatusItem<MyTask>();
             try
@@ -203,7 +204,7 @@ namespace SgartCore3Ef6Angular1Todo.API
                     return result;
                 }
 
-                result.Data = _manager.TaskToggle(inputData.ID.Value);
+                result.Data = await _manager.TaskToggleAsync(inputData.ID.Value);
                 if (result.Data != null)
                     result.AddSuccess("Updated");
                 else
@@ -233,7 +234,7 @@ namespace SgartCore3Ef6Angular1Todo.API
                     return result;
                 }
 
-                result.Data = _manager.TaskCategory(inputData.ID.Value, inputData.IDCategory.Value);
+                result.Data = await _manager.TaskCategoryAsync(inputData.ID.Value, inputData.IDCategory.Value);
                 if (result.Data != null)
                     result.AddSuccess("Updated");
                 else

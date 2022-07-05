@@ -21,12 +21,12 @@ namespace SgartCore3Ef6Angular1Todo.API
         }
 
         [HttpGet]
-        public async Task<ServiceStatusListItem<Category>> Get()
+        public async Task<ServiceStatusListItem<Category>> GetAsync()
         {
             ServiceStatusListItem<Category> result = new ServiceStatusListItem<Category>();
             try
             {
-                result.Data = _manager.CategoryGetAllAsync().ToList();
+                result.Data = (await _manager.CategoryGetAllAsync()).ToList();
                 result.Success = true;
             }
             catch (Exception ex)
